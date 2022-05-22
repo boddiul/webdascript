@@ -9,6 +9,10 @@ var sampleList = {"examples":null, "tests":null};
 
 
 pageInit = function () {
+
+    $.getScript("daScript.js")
+
+
     editorCode = document.getElementById("code");
     editorOutput = document.getElementById("output");
 
