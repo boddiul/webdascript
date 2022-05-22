@@ -34,7 +34,7 @@
     {
       "name" : "Random Sequence",
       "files" : ["tests/random_sequence.das"],
-      "correct_output" : ["\"dictionary\", 0, 20"]
+      "correct_output" : [["\"dictionary\",", null, "20"]]
     }
   ]
 }

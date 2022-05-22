@@ -116,12 +116,34 @@ runTest = function(i) {
 
             let ok = true;
 
-            console.log(outputPool);
-            console.log(samplesData["tests"][i].correct_output)
-            for (let o=0;o<samplesData["tests"][i].correct_output.length;o++)
-                if (outputPool[o] !== samplesData["tests"][i].correct_output[o])
-                    ok = false;
 
+
+            if (outputPool.length<samplesData["tests"][i].correct_output.length)
+                ok = false;
+            else
+                for (let o=0;o<samplesData["tests"][i].correct_output.length;o++) {
+                    let correct = samplesData["tests"][i].correct_output[o];
+
+                    if (Array.isArray(correct))
+                    {
+                        let outp = outputPool[o].split(' ');
+
+                        if (outp.length<correct.length)
+                            ok = false;
+                        else
+                            for (let k=0;k<correct.length;k++)
+                                if (correct[k] !== null && outp[k] !== correct[k])
+                                    ok = false;
+
+
+                    }
+                    else
+                    {
+                        if (correct !== null && outputPool[o] !== correct)
+                            ok = false;
+                    }
+
+                }
 
 
             printOutput(samplesData["tests"][i].name+" Test "+(i+1)+"/"+samplesData["tests"].length+": "+(ok ? "SUCCESS" : "FAIL"),ok ? "#89db4a": '#ff9393');
